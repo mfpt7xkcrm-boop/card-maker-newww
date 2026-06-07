@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hirokaka Orica Maker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>Hirokakapresents</h1>
+</header>
+
+<div class="container">
+
+    <!-- 設定 -->
+    <div class="controls">
+
+        <h2>カード設定</h2>
+
+        <label>カード名</label>
+        <input type="text" id="cardName" value="カード名">
+
+        <label>カード名サイズ</label>
+        <input type="range" id="nameSize" min="20" max="70" value="40">
+
+        <label>文字色</label>
+        <input type="color" id="nameColor" value="#ffffff">
+
+        <label>縁取り色</label>
+        <input type="color" id="outlineColor" value="#000000">
+
+        <hr>
+
+        <label>フレーム</label>
+        <select id="frameSelect">
+            <option value="water">水</option>
+            <option value="fire">火</option>
+            <option value="nature">自然</option>
+            <option value="dark">闇</option>
+            <option value="rainbow">虹</option>
+            <option value="space">宇宙</option>
+        </select>
+
+        <label>属性</label>
+        <select id="elementSelect">
+            <option value="water">水</option>
+            <option value="fire">火</option>
+            <option value="nature">自然</option>
+            <option value="dark">闇</option>
+            <option value="light">光</option>
+            <option value="none">無</option>
+        </select>
+
+        <hr>
+
+        <label>星</label>
+        <input type="range" id="starCount" min="0" max="5" value="0">
+
+        <hr>
+
+        <label>カード画像</label>
+        <input type="file" id="imageUpload" accept="image/*">
+
+        <hr>
+
+        <label>効果</label>
+        <textarea id="effectText"></textarea>
+
+        <label>フレーバー</label>
+        <textarea id="flavorText"></textarea>
+
+        <hr>
+
+        <label>
+            <input type="checkbox" id="showAtk" checked>
+            ATK表示
+        </label>
+
+        <input type="number" id="atkValue" value="0">
+
+        <label>
+            <input type="checkbox" id="showDef" checked>
+            DEF表示
+        </label>
+
+        <input type="number" id="defValue" value="0">
+
+        <hr>
+
+        <button id="saveBtn">
+            PNG保存
+        </button>
+
+    </div>
+
+    <!-- カード -->
+    <div class="preview">
+
+        <div id="card" class="card frame-water">
+
+            <div id="attributeIcon"
+                 class="attribute water">
+            </div>
+
+            <div id="cardNameDisplay"
+                 class="card-name">
+                 カード名
+            </div>
+
+            <div id="stars"
+                 class="stars">
+            </div>
+
+            <div class="art-area">
+                <img id="cardImage">
+            </div>
+
+            <div id="effectDisplay"
+                 class="effect-box">
+            </div>
+
+            <div id="flavorDisplay"
+                 class="flavor-box">
+            </div>
+
+            <div class="battle">
+
+                <div id="atkBox"
+                     class="atk">
+                     ATK 0
+                </div>
+
+                <div id="defBox"
+                     class="def">
+                     DEF 0
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
