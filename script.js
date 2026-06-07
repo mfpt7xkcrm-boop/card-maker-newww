@@ -1,492 +1,343 @@
-/* =========================
-   パネル切替
-========================= */
+// =====================
+// 要素取得
+// =====================
 
-const panels = document.querySelectorAll(".panel");
+const card = document.getElementById("card");
+
+const cardName = document.getElementById("cardName");
+const cardNameDisplay = document.getElementById("cardNameDisplay");
+
+const nameSize = document.getElementById("nameSize");
+const nameColor = document.getElementById("nameColor");
+
+const cardNumber = document.getElementById("cardNumber");
+const numberDisplay = document.getElementById("numberDisplay");
+
+const creator = document.getElementById("creator");
+const creatorDisplay = document.getElementById("creatorDisplay");
+
+const effectText = document.getElementById("effectText");
+const effectDisplay = document.getElementById("effectDisplay");
+
+const flavorText = document.getElementById("flavorText");
+const flavorDisplay = document.getElementById("flavorDisplay");
+
+const effectSize = document.getElementById("effectSize");
+
+const stars = document.getElementById("stars");
+const starCount = document.getElementById("starCount");
+
+const rarity = document.getElementById("rarity");
+const rarityDisplay = document.getElementById("rarityDisplay");
+
+const holo = document.getElementById("holo");
+const holoLayer = document.getElementById("holoLayer");
+
+const frameSelect = document.getElementById("frameSelect");
+const frameCategory = document.getElementById("frameCategory");
+
+// =====================
+// フレーム一覧
+// =====================
+
+const frameData = {
+
+    basic: [
+
+        ["water","水"],
+        ["fire","火"],
+        ["nature","自然"],
+        ["light","光"],
+        ["dark","闇"],
+        ["rainbow","虹"],
+        ["space","宇宙"],
+        ["blue","青"],
+        ["red","赤"],
+        ["green","緑"],
+        ["purple","紫"]
+
+    ],
+
+    premium:[
+
+        ["dragon-blue","青ドラゴン"],
+        ["dragon-red","赤ドラゴン"],
+        ["dragon-green","緑ドラゴン"],
+        ["dragon-purple","紫ドラゴン"],
+        ["holy","聖騎士"],
+        ["devil","悪魔"],
+        ["machine","機械"],
+        ["cosmos","宇宙"]
+
+    ]
+
+};
+
+// =====================
+// フレーム読込
+// =====================
+
+function loadFrames(){
+
+    frameSelect.innerHTML="";
+
+    frameData[
+        frameCategory.value
+    ].forEach(frame=>{
+
+        const option =
+        document.createElement("option");
+
+        option.value = frame[0];
+        option.textContent = frame[1];
+
+        frameSelect.appendChild(option);
+
+    });
+
+}
+
+loadFrames();
+
+frameCategory.addEventListener(
+"change",
+loadFrames
+);
+
+// =====================
+// カード名
+// =====================
+
+cardName.addEventListener(
+"input",
+()=>{
+    cardNameDisplay.textContent =
+    cardName.value || "カード名";
+}
+);
+
+// =====================
+// 名前サイズ
+// =====================
+
+nameSize.addEventListener(
+"input",
+()=>{
+    cardNameDisplay.style.fontSize =
+    nameSize.value + "px";
+}
+);
+
+// =====================
+// 名前色
+// =====================
+
+nameColor.addEventListener(
+"input",
+()=>{
+    cardNameDisplay.style.color =
+    nameColor.value;
+}
+);
+
+// =====================
+// カード番号
+// =====================
+
+cardNumber.addEventListener(
+"input",
+()=>{
+    numberDisplay.textContent =
+    cardNumber.value;
+}
+);
+
+// =====================
+// 作者
+// =====================
+
+creator.addEventListener(
+"input",
+()=>{
+    creatorDisplay.textContent =
+    creator.value;
+}
+);
+
+// =====================
+// 説明文
+// =====================
+
+effectText.addEventListener(
+"input",
+()=>{
+    effectDisplay.textContent =
+    effectText.value;
+}
+);
+
+// =====================
+// フレーバー
+// =====================
+
+flavorText.addEventListener(
+"input",
+()=>{
+    flavorDisplay.textContent =
+    flavorText.value;
+}
+);
+
+// =====================
+// 説明サイズ
+// =====================
+
+effectSize.addEventListener(
+"input",
+()=>{
+    effectDisplay.style.fontSize =
+    effectSize.value + "px";
+}
+);
+
+// =====================
+// 星
+// =====================
+
+function updateStars(){
+
+    stars.innerHTML="";
+
+    const count =
+    Number(starCount.value);
+
+    for(let i=0;i<count;i++){
+
+        const span =
+        document.createElement("span");
+
+        span.textContent = "⭐";
+
+        if(count===5){
+
+            span.classList.add(
+            "rainbow-star"
+            );
+
+        }
+
+        stars.appendChild(span);
+
+    }
+
+}
+
+updateStars();
+
+starCount.addEventListener(
+"input",
+updateStars
+);
+
+// =====================
+// レアリティ
+// =====================
+
+rarity.addEventListener(
+"change",
+()=>{
+
+    rarityDisplay.textContent =
+    rarity.value;
+
+    rarityDisplay.className =
+    "rarity";
+
+    const value =
+    rarity.value.toLowerCase();
+
+    if(value){
+
+        rarityDisplay.classList.add(
+        value
+        );
+
+    }
+
+}
+);
+
+// =====================
+// ホログラム
+// =====================
+
+holo.addEventListener(
+"change",
+()=>{
+
+    if(holo.checked){
+
+        holoLayer.classList.add(
+        "active"
+        );
+
+    }else{
+
+        holoLayer.classList.remove(
+        "active"
+        );
+
+    }
+
+}
+);
+
+// =====================
+// フレーム変更
+// =====================
+
+frameSelect.addEventListener(
+"change",
+()=>{
+
+    card.className =
+    "card frame-" +
+    frameSelect.value;
+
+}
+);
+
+// =====================
+// タブ切替
+// =====================
 
 document
-.querySelectorAll(".bottom-tabs button")
-.forEach(btn=>{
+.querySelectorAll(".bottom-nav button")
+.forEach(button=>{
 
-    btn.addEventListener("click",()=>{
+    button.addEventListener(
+    "click",
+    ()=>{
 
-        const target =
-        btn.dataset.panel;
-
-        panels.forEach(panel=>{
+        document
+        .querySelectorAll(".panel")
+        .forEach(panel=>{
 
             panel.classList.remove(
-                "active"
+            "active"
             );
 
         });
 
         document
         .getElementById(
-            "panel-"+target
+        "panel-" +
+        button.dataset.panel
         )
-        .classList.add("active");
+        .classList.add(
+        "active"
+        );
 
     });
 
 });
-
-/* =========================
-   カード名
-========================= */
-
-const cardName =
-document.getElementById("cardName");
-
-const cardNameDisplay =
-document.getElementById(
-"cardNameDisplay"
-);
-
-cardName.addEventListener(
-"input",
-()=>{
-
-cardNameDisplay.textContent =
-cardName.value || "カード名";
-
-});
-
-/* =========================
-   カード番号
-========================= */
-
-const cardNumber =
-document.getElementById(
-"cardNumber"
-);
-
-const numberDisplay =
-document.getElementById(
-"numberDisplay"
-);
-
-cardNumber.addEventListener(
-"input",
-()=>{
-
-numberDisplay.textContent =
-cardNumber.value;
-
-});
-
-/* =========================
-   作者名
-========================= */
-
-const creator =
-document.getElementById(
-"creator"
-);
-
-const creatorDisplay =
-document.getElementById(
-"creatorDisplay"
-);
-
-creator.addEventListener(
-"input",
-()=>{
-
-creatorDisplay.textContent =
-creator.value;
-
-});
-
-/* =========================
-   効果文
-========================= */
-
-const effectText =
-document.getElementById(
-"effectText"
-);
-
-const effectDisplay =
-document.getElementById(
-"effectDisplay"
-);
-
-effectText.addEventListener(
-"input",
-()=>{
-
-effectDisplay.innerText =
-effectText.value;
-
-});
-
-/* =========================
-   効果文字サイズ
-========================= */
-
-const effectSize =
-document.getElementById(
-"effectSize"
-);
-
-effectSize.addEventListener(
-"input",
-()=>{
-
-effectDisplay.style.fontSize =
-effectSize.value + "px";
-
-});
-
-/* =========================
-   レアリティ
-========================= */
-
-const rarity =
-document.getElementById(
-"rarity"
-);
-
-const rarityDisplay =
-document.getElementById(
-"rarityDisplay"
-);
-
-function updateRarity(){
-
-const value =
-rarity.value;
-
-rarityDisplay.textContent =
-value === "なし"
-? ""
-: value;
-
-rarityDisplay.className =
-"rarity";
-
-switch(value){
-
-case "N":
-
-rarityDisplay.style.color =
-"#cccccc";
-
-break;
-
-case "R":
-
-rarityDisplay.style.color =
-"#4da6ff";
-
-break;
-
-case "SR":
-
-rarityDisplay.style.color =
-"#c266ff";
-
-break;
-
-case "SSR":
-
-rarityDisplay.style.color =
-"#ffd700";
-
-break;
-
-case "UR":
-
-rarityDisplay.style.background =
-"linear-gradient(90deg,red,orange,yellow,green,cyan,blue,violet)";
-
-rarityDisplay.style.webkitBackgroundClip =
-"text";
-
-rarityDisplay.style.color =
-"transparent";
-
-break;
-
-case "LR":
-
-rarityDisplay.style.background =
-"linear-gradient(90deg,#ffd700,red,orange,yellow,green,cyan,blue,violet)";
-
-rarityDisplay.style.webkitBackgroundClip =
-"text";
-
-rarityDisplay.style.color =
-"transparent";
-
-rarityDisplay.style.filter =
-"drop-shadow(0 0 8px gold)";
-
-break;
-
-default:
-
-rarityDisplay.style.color =
-"white";
-
-}
-
-}
-
-rarity.addEventListener(
-"change",
-updateRarity
-);
-
-updateRarity();
-
-/* =========================
-   PNG保存
-========================= */
-
-const savePNG =
-document.getElementById(
-"savePNG"
-);
-
-savePNG.addEventListener(
-"click",
-async ()=>{
-
-const card =
-document.getElementById(
-"card"
-);
-
-const canvas =
-await html2canvas(
-card,
-{
-scale:4,
-useCORS:true,
-backgroundColor:null
-}
-);
-
-const link =
-document.createElement("a");
-
-link.download =
-"card.png";
-
-link.href =
-canvas.toDataURL(
-"image/png"
-);
-
-link.click();
-
-});
-
-/* =========================
-   JPG保存
-========================= */
-
-const saveJPG =
-document.getElementById(
-"saveJPG"
-);
-
-saveJPG.addEventListener(
-"click",
-async ()=>{
-
-const card =
-document.getElementById(
-"card"
-);
-
-const canvas =
-await html2canvas(
-card,
-{
-scale:4,
-useCORS:true
-}
-);
-
-const link =
-document.createElement("a");
-
-link.download =
-"card.jpg";
-
-link.href =
-canvas.toDataURL(
-"image/jpeg",
-1.0
-);
-
-link.click();
-
-});
-
-/* =========================
-   JSON保存
-========================= */
-
-const saveJSON =
-document.getElementById(
-"saveJSON"
-);
-
-saveJSON.addEventListener(
-"click",
-()=>{
-
-const data = {
-
-name:
-cardName.value,
-
-number:
-cardNumber.value,
-
-creator:
-creator.value,
-
-effect:
-effectText.value,
-
-rarity:
-rarity.value
-
-};
-
-const blob =
-new Blob(
-[
-JSON.stringify(
-data,
-null,
-2
-)
-],
-{
-type:
-"application/json"
-}
-);
-
-const link =
-document.createElement("a");
-
-link.href =
-URL.createObjectURL(
-blob
-);
-
-link.download =
-"card.json";
-
-link.click();
-
-});
-
-/* =========================
-   JSON読込
-========================= */
-
-const loadJSON =
-document.getElementById(
-"loadJSON"
-);
-
-loadJSON.addEventListener(
-"click",
-()=>{
-
-const input =
-document.createElement(
-"input"
-);
-
-input.type = "file";
-
-input.accept =
-".json";
-
-input.onchange =
-event=>{
-
-const file =
-event.target.files[0];
-
-if(!file) return;
-
-const reader =
-new FileReader();
-
-reader.onload = ()=>{
-
-const data =
-JSON.parse(
-reader.result
-);
-
-cardName.value =
-data.name || "";
-
-cardNumber.value =
-data.number || "";
-
-creator.value =
-data.creator || "";
-
-effectText.value =
-data.effect || "";
-
-rarity.value =
-data.rarity || "なし";
-
-cardName.dispatchEvent(
-new Event("input")
-);
-
-cardNumber.dispatchEvent(
-new Event("input")
-);
-
-creator.dispatchEvent(
-new Event("input")
-);
-
-effectText.dispatchEvent(
-new Event("input")
-);
-
-updateRarity();
-
-};
-
-reader.readAsText(
-file
-);
-
-};
-
-input.click();
-
-});
-
-/* =========================
-   初期表示
-========================= */
-
-cardNameDisplay.textContent =
-"カード名";
-
-numberDisplay.textContent =
-"";
-
-creatorDisplay.textContent =
-"";
-
-effectDisplay.textContent =
-"";
