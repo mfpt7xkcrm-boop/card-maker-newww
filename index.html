@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Hirokaka Orica Maker</title>
 
@@ -12,7 +12,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 </head>
-
 <body>
 
 <header class="topbar">
@@ -21,31 +20,25 @@
         Hirokakapresents
     </div>
 
-    <div class="menu-buttons">
-
+    <div class="header-buttons">
         <button id="savePNG">PNG保存</button>
-
         <button id="saveJPG">JPG保存</button>
-
         <button id="saveJSON">JSON保存</button>
-
-        <button id="loadJSON">JSON読込</button>
-
+        <button id="loadJSONBtn">JSON読込</button>
+        <input type="file" id="loadJSON" hidden>
     </div>
 
 </header>
 
-<div class="main-layout">
+<div class="app">
 
-    <!-- 編集 -->
+    <!-- 編集エリア -->
 
     <aside class="editor">
 
         <!-- 基本 -->
 
-        <section
-        id="panel-basic"
-        class="panel active">
+        <section class="panel active" id="panel-basic">
 
             <h2>基本情報</h2>
 
@@ -53,167 +46,158 @@
             <input type="text" id="cardName">
 
             <label>名前サイズ</label>
-            <input
-            type="range"
-            id="nameSize"
-            min="24"
-            max="80"
-            value="52">
+            <input type="range"
+                   id="nameSize"
+                   min="20"
+                   max="80"
+                   value="52">
 
             <label>文字色</label>
-            <input
-            type="color"
-            id="nameColor"
-            value="#ffffff">
+            <input type="color"
+                   id="nameColor"
+                   value="#ffffff">
 
             <label>縁色</label>
-            <input
-            type="color"
-            id="outlineColor"
-            value="#000000">
+            <input type="color"
+                   id="outlineColor"
+                   value="#000000">
 
             <label>カード番号</label>
-            <input
-            type="text"
-            id="cardNumber">
+            <input type="text" id="cardNumber">
 
             <label>作者名</label>
-            <input
-            type="text"
-            id="creator">
+            <input type="text" id="creator">
 
         </section>
 
         <!-- 画像 -->
 
-        <section
-        id="panel-image"
-        class="panel">
+        <section class="panel" id="panel-image">
 
             <h2>画像</h2>
 
-            <input
-            type="file"
-            id="imageUpload"
-            accept="image/*">
+            <input type="file"
+                   id="imageUpload"
+                   accept="image/*">
 
             <label>ズーム</label>
-
-            <input
-            type="range"
-            id="imageZoom"
-            min="50"
-            max="300"
-            value="100">
+            <input type="range"
+                   id="imageZoom"
+                   min="50"
+                   max="300"
+                   value="100">
 
         </section>
 
         <!-- フレーム -->
 
-        <section
-        id="panel-frame"
-        class="panel">
+        <section class="panel" id="panel-frame">
 
             <h2>フレーム</h2>
 
-            <select id="frameSelect">
+            <label>カテゴリ</label>
 
-                <option value="water">水</option>
-                <option value="fire">火</option>
-                <option value="nature">自然</option>
-                <option value="dark">闇</option>
-                <option value="light">光</option>
-                <option value="rainbow">虹</option>
-                <option value="space">宇宙</option>
+            <select id="frameCategory">
 
-                <option value="blue">青</option>
-                <option value="red">赤</option>
-                <option value="green">緑</option>
-                <option value="purple">紫</option>
+                <option value="basic">
+                    ベーシック
+                </option>
+
+                <option value="premium">
+                    プレミアム
+                </option>
 
             </select>
+
+            <label>フレーム</label>
+
+            <select id="frameSelect"></select>
 
         </section>
 
         <!-- 星 -->
 
-        <section
-        id="panel-star"
-        class="panel">
+        <section class="panel" id="panel-star">
 
             <h2>星</h2>
 
             <label>星の数</label>
 
-            <input
-            type="range"
-            id="starCount"
-            min="0"
-            max="5"
-            value="0">
+            <input type="range"
+                   id="starCount"
+                   min="0"
+                   max="5"
+                   value="0">
 
         </section>
 
-        <!-- 効果 -->
+        <!-- 説明 -->
 
-        <section
-        id="panel-effect"
-        class="panel">
+        <section class="panel" id="panel-effect">
 
             <h2>説明文</h2>
 
             <textarea
-            id="effectText"></textarea>
+                id="effectText"></textarea>
 
-            <label>説明文字サイズ</label>
+            <label>説明文サイズ</label>
 
-            <input
-            type="range"
-            id="effectSize"
-            min="12"
-            max="36"
-            value="22">
+            <input type="range"
+                   id="effectSize"
+                   min="12"
+                   max="36"
+                   value="22">
 
             <label>フレーバーテキスト</label>
 
             <textarea
-            id="flavorText"></textarea>
+                id="flavorText"></textarea>
 
         </section>
 
         <!-- レア -->
 
-        <section
-        id="panel-rarity"
-        class="panel">
+        <section class="panel" id="panel-rarity">
 
             <h2>レアリティ</h2>
 
             <select id="rarity">
 
-                <option>なし</option>
+                <option value="">なし</option>
 
                 <option>N</option>
-
                 <option>R</option>
-
                 <option>SR</option>
-
                 <option>SSR</option>
-
                 <option>UR</option>
-
                 <option>LR</option>
 
             </select>
 
             <label>
 
-                <input
-                type="checkbox"
-                id="holo">
+                <input type="checkbox"
+                       id="holo">
 
                 ホログラム
+
+            </label>
+
+            <label>
+
+                <input type="checkbox"
+                       id="relief">
+
+                レリーフ
+
+            </label>
+
+            <label>
+
+                <input type="checkbox"
+                       id="secret">
+
+                シークレット
 
             </label>
 
@@ -221,57 +205,46 @@
 
     </aside>
 
-    <!-- プレビュー -->
+    <!-- カード -->
 
     <main class="preview">
 
-        <div
-        id="card"
-        class="card frame-water">
+        <div id="card"
+             class="card frame-water">
 
-            <div
-            id="cardNameDisplay"
-            class="card-name">
+            <div id="holoLayer"
+                 class="holo-layer"></div>
+
+            <div id="cardNameDisplay"
+                 class="card-name">
 
                 カード名
 
             </div>
 
-            <div
-            id="stars"
-            class="stars"></div>
+            <div id="stars"
+                 class="stars"></div>
 
-            <div
-            class="art-area">
+            <div class="art-area">
 
-                <img
-                id="cardImage">
+                <img id="cardImage">
 
             </div>
 
-            <div
-            id="effectDisplay"
-            class="effect-box"></div>
+            <div id="effectDisplay"
+                 class="effect-box"></div>
 
-            <div
-            id="flavorDisplay"
-            class="flavor-box"></div>
+            <div id="flavorDisplay"
+                 class="flavor-box"></div>
 
-            <div
-            id="rarityDisplay"
-            class="rarity"></div>
+            <div id="rarityDisplay"
+                 class="rarity"></div>
 
-            <div
-            id="numberDisplay"
-            class="number"></div>
+            <div id="numberDisplay"
+                 class="number"></div>
 
-            <div
-            id="creatorDisplay"
-            class="creator"></div>
-
-            <div
-            id="holoLayer"
-            class="holo-layer"></div>
+            <div id="creatorDisplay"
+                 class="creator"></div>
 
         </div>
 
@@ -279,7 +252,9 @@
 
 </div>
 
-<nav class="bottom-tabs">
+<!-- 下タブ -->
+
+<nav class="bottom-nav">
 
     <button data-panel="basic">
         基本
@@ -298,7 +273,7 @@
     </button>
 
     <button data-panel="effect">
-        効果
+        説明
     </button>
 
     <button data-panel="rarity">
