@@ -23,21 +23,13 @@
 
     <div class="menu-buttons">
 
-        <button id="savePNG">
-            PNG保存
-        </button>
+        <button id="savePNG">PNG保存</button>
 
-        <button id="saveJPG">
-            JPG保存
-        </button>
+        <button id="saveJPG">JPG保存</button>
 
-        <button id="saveJSON">
-            JSON保存
-        </button>
+        <button id="saveJSON">JSON保存</button>
 
-        <button id="loadJSON">
-            JSON読込
-        </button>
+        <button id="loadJSON">JSON読込</button>
 
     </div>
 
@@ -45,76 +37,99 @@
 
 <div class="main-layout">
 
+    <!-- 編集 -->
+
     <aside class="editor">
 
         <!-- 基本 -->
 
-        <section id="panel-basic" class="panel active">
+        <section
+        id="panel-basic"
+        class="panel active">
 
             <h2>基本情報</h2>
 
             <label>カード名</label>
             <input type="text" id="cardName">
 
-            <label>カード番号</label>
-            <input type="text" id="cardNumber">
-
-            <label>作者名</label>
-            <input type="text" id="creator">
-
             <label>名前サイズ</label>
             <input
-                type="range"
-                id="nameSize"
-                min="24"
-                max="72"
-                value="52">
+            type="range"
+            id="nameSize"
+            min="24"
+            max="80"
+            value="52">
+
+            <label>文字色</label>
+            <input
+            type="color"
+            id="nameColor"
+            value="#ffffff">
+
+            <label>縁色</label>
+            <input
+            type="color"
+            id="outlineColor"
+            value="#000000">
+
+            <label>カード番号</label>
+            <input
+            type="text"
+            id="cardNumber">
+
+            <label>作者名</label>
+            <input
+            type="text"
+            id="creator">
 
         </section>
 
         <!-- 画像 -->
 
-        <section id="panel-image" class="panel">
+        <section
+        id="panel-image"
+        class="panel">
 
             <h2>画像</h2>
 
             <input
-                type="file"
-                id="imageUpload"
-                accept="image/*">
+            type="file"
+            id="imageUpload"
+            accept="image/*">
 
             <label>ズーム</label>
 
             <input
-                type="range"
-                id="imageZoom"
-                min="50"
-                max="300"
-                value="100">
+            type="range"
+            id="imageZoom"
+            min="50"
+            max="300"
+            value="100">
 
         </section>
 
         <!-- フレーム -->
 
-        <section id="panel-frame" class="panel">
+        <section
+        id="panel-frame"
+        class="panel">
 
             <h2>フレーム</h2>
 
             <select id="frameSelect">
 
                 <option value="water">水</option>
-
                 <option value="fire">火</option>
-
                 <option value="nature">自然</option>
-
                 <option value="dark">闇</option>
-
                 <option value="light">光</option>
-
                 <option value="rainbow">虹</option>
-
                 <option value="space">宇宙</option>
+
+                <option value="blue">青</option>
+                <option value="red">赤</option>
+                <option value="green">緑</option>
+                <option value="purple">紫</option>
 
             </select>
 
@@ -122,55 +137,72 @@
 
         <!-- 星 -->
 
-        <section id="panel-star" class="panel">
+        <section
+        id="panel-star"
+        class="panel">
 
             <h2>星</h2>
 
             <label>星の数</label>
 
             <input
-                type="range"
-                id="starCount"
-                min="0"
-                max="5"
-                value="0">
+            type="range"
+            id="starCount"
+            min="0"
+            max="5"
+            value="0">
 
         </section>
 
         <!-- 効果 -->
 
-        <section id="panel-effect" class="panel">
+        <section
+        id="panel-effect"
+        class="panel">
 
             <h2>説明文</h2>
 
             <textarea
-                id="effectText"></textarea>
+            id="effectText"></textarea>
 
-            <label>文字サイズ</label>
+            <label>説明文字サイズ</label>
 
             <input
-                type="range"
-                id="effectSize"
-                min="14"
-                max="36"
-                value="22">
+            type="range"
+            id="effectSize"
+            min="12"
+            max="36"
+            value="22">
+
+            <label>フレーバーテキスト</label>
+
+            <textarea
+            id="flavorText"></textarea>
 
         </section>
 
         <!-- レア -->
 
-        <section id="panel-rarity" class="panel">
+        <section
+        id="panel-rarity"
+        class="panel">
 
             <h2>レアリティ</h2>
 
             <select id="rarity">
 
                 <option>なし</option>
+
                 <option>N</option>
+
                 <option>R</option>
+
                 <option>SR</option>
+
                 <option>SSR</option>
+
                 <option>UR</option>
+
                 <option>LR</option>
 
             </select>
@@ -178,8 +210,8 @@
             <label>
 
                 <input
-                    type="checkbox"
-                    id="holo">
+                type="checkbox"
+                id="holo">
 
                 ホログラム
 
@@ -193,57 +225,53 @@
 
     <main class="preview">
 
-        <div id="card" class="card frame-water">
+        <div
+        id="card"
+        class="card frame-water">
 
             <div
-                id="cardNameDisplay"
-                class="card-name">
+            id="cardNameDisplay"
+            class="card-name">
 
                 カード名
 
             </div>
 
             <div
-                id="stars"
-                class="stars">
+            id="stars"
+            class="stars"></div>
 
-            </div>
+            <div
+            class="art-area">
 
-            <div class="art-area">
-
-                <img id="cardImage">
+                <img
+                id="cardImage">
 
             </div>
 
             <div
-                id="effectDisplay"
-                class="effect-box">
-
-            </div>
+            id="effectDisplay"
+            class="effect-box"></div>
 
             <div
-                id="rarityDisplay"
-                class="rarity">
-
-            </div>
+            id="flavorDisplay"
+            class="flavor-box"></div>
 
             <div
-                id="numberDisplay"
-                class="number">
-
-            </div>
+            id="rarityDisplay"
+            class="rarity"></div>
 
             <div
-                id="creatorDisplay"
-                class="creator">
-
-            </div>
+            id="numberDisplay"
+            class="number"></div>
 
             <div
-                id="holoLayer"
-                class="holo-layer">
+            id="creatorDisplay"
+            class="creator"></div>
 
-            </div>
+            <div
+            id="holoLayer"
+            class="holo-layer"></div>
 
         </div>
 
