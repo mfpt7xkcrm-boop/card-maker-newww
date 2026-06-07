@@ -1,492 +1,463 @@
-/* =========================
-   パネル切替
-========================= */
-
-const panels = document.querySelectorAll(".panel");
-
-document
-.querySelectorAll(".bottom-tabs button")
-.forEach(btn=>{
-
-    btn.addEventListener("click",()=>{
-
-        const target =
-        btn.dataset.panel;
-
-        panels.forEach(panel=>{
-
-            panel.classList.remove(
-                "active"
-            );
-
-        });
-
-        document
-        .getElementById(
-            "panel-"+target
-        )
-        .classList.add("active");
-
-    });
-
-});
-
-/* =========================
-   カード名
-========================= */
-
-const cardName =
-document.getElementById("cardName");
-
-const cardNameDisplay =
-document.getElementById(
-"cardNameDisplay"
-);
-
-cardName.addEventListener(
-"input",
-()=>{
-
-cardNameDisplay.textContent =
-cardName.value || "カード名";
-
-});
-
-/* =========================
-   カード番号
-========================= */
-
-const cardNumber =
-document.getElementById(
-"cardNumber"
-);
-
-const numberDisplay =
-document.getElementById(
-"numberDisplay"
-);
-
-cardNumber.addEventListener(
-"input",
-()=>{
-
-numberDisplay.textContent =
-cardNumber.value;
-
-});
-
-/* =========================
-   作者名
-========================= */
-
-const creator =
-document.getElementById(
-"creator"
-);
-
-const creatorDisplay =
-document.getElementById(
-"creatorDisplay"
-);
-
-creator.addEventListener(
-"input",
-()=>{
-
-creatorDisplay.textContent =
-creator.value;
-
-});
-
-/* =========================
-   効果文
-========================= */
-
-const effectText =
-document.getElementById(
-"effectText"
-);
-
-const effectDisplay =
-document.getElementById(
-"effectDisplay"
-);
-
-effectText.addEventListener(
-"input",
-()=>{
-
-effectDisplay.innerText =
-effectText.value;
-
-});
-
-/* =========================
-   効果文字サイズ
-========================= */
-
-const effectSize =
-document.getElementById(
-"effectSize"
-);
-
-effectSize.addEventListener(
-"input",
-()=>{
-
-effectDisplay.style.fontSize =
-effectSize.value + "px";
-
-});
-
-/* =========================
-   レアリティ
-========================= */
-
-const rarity =
-document.getElementById(
-"rarity"
-);
-
-const rarityDisplay =
-document.getElementById(
-"rarityDisplay"
-);
-
-function updateRarity(){
-
-const value =
-rarity.value;
-
-rarityDisplay.textContent =
-value === "なし"
-? ""
-: value;
-
-rarityDisplay.className =
-"rarity";
-
-switch(value){
-
-case "N":
-
-rarityDisplay.style.color =
-"#cccccc";
-
-break;
-
-case "R":
-
-rarityDisplay.style.color =
-"#4da6ff";
-
-break;
-
-case "SR":
-
-rarityDisplay.style.color =
-"#c266ff";
-
-break;
-
-case "SSR":
-
-rarityDisplay.style.color =
-"#ffd700";
-
-break;
-
-case "UR":
-
-rarityDisplay.style.background =
-"linear-gradient(90deg,red,orange,yellow,green,cyan,blue,violet)";
-
-rarityDisplay.style.webkitBackgroundClip =
-"text";
-
-rarityDisplay.style.color =
-"transparent";
-
-break;
-
-case "LR":
-
-rarityDisplay.style.background =
-"linear-gradient(90deg,#ffd700,red,orange,yellow,green,cyan,blue,violet)";
-
-rarityDisplay.style.webkitBackgroundClip =
-"text";
-
-rarityDisplay.style.color =
-"transparent";
-
-rarityDisplay.style.filter =
-"drop-shadow(0 0 8px gold)";
-
-break;
-
-default:
-
-rarityDisplay.style.color =
-"white";
-
+/* ===== リセット ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
+body{
+    background:#111827;
+    color:white;
+    font-family:
+    "Segoe UI",
+    sans-serif;
+
+    height:100vh;
+    overflow:hidden;
 }
 
-rarity.addEventListener(
-"change",
-updateRarity
-);
+/* ===== 上部 ===== */
 
-updateRarity();
+.topbar{
 
-/* =========================
-   PNG保存
-========================= */
+    height:70px;
 
-const savePNG =
-document.getElementById(
-"savePNG"
-);
+    background:#0f172a;
 
-savePNG.addEventListener(
-"click",
-async ()=>{
+    border-bottom:
+    1px solid #334155;
 
-const card =
-document.getElementById(
-"card"
-);
+    display:flex;
 
-const canvas =
-await html2canvas(
-card,
-{
-scale:4,
-useCORS:true,
-backgroundColor:null
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 20px;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:1000;
 }
-);
 
-const link =
-document.createElement("a");
+.logo{
 
-link.download =
-"card.png";
+    font-size:24px;
 
-link.href =
-canvas.toDataURL(
-"image/png"
-);
+    font-weight:700;
 
-link.click();
-
-});
-
-/* =========================
-   JPG保存
-========================= */
-
-const saveJPG =
-document.getElementById(
-"saveJPG"
-);
-
-saveJPG.addEventListener(
-"click",
-async ()=>{
-
-const card =
-document.getElementById(
-"card"
-);
-
-const canvas =
-await html2canvas(
-card,
-{
-scale:4,
-useCORS:true
+    color:#60a5fa;
 }
-);
 
-const link =
-document.createElement("a");
+.menu-buttons{
 
-link.download =
-"card.jpg";
+    display:flex;
 
-link.href =
-canvas.toDataURL(
-"image/jpeg",
-1.0
-);
-
-link.click();
-
-});
-
-/* =========================
-   JSON保存
-========================= */
-
-const saveJSON =
-document.getElementById(
-"saveJSON"
-);
-
-saveJSON.addEventListener(
-"click",
-()=>{
-
-const data = {
-
-name:
-cardName.value,
-
-number:
-cardNumber.value,
-
-creator:
-creator.value,
-
-effect:
-effectText.value,
-
-rarity:
-rarity.value
-
-};
-
-const blob =
-new Blob(
-[
-JSON.stringify(
-data,
-null,
-2
-)
-],
-{
-type:
-"application/json"
+    gap:10px;
 }
-);
 
-const link =
-document.createElement("a");
+.menu-buttons button{
 
-link.href =
-URL.createObjectURL(
-blob
-);
+    padding:10px 15px;
 
-link.download =
-"card.json";
+    border:none;
 
-link.click();
+    border-radius:10px;
 
-});
+    cursor:pointer;
 
-/* =========================
-   JSON読込
-========================= */
+    background:#2563eb;
 
-const loadJSON =
-document.getElementById(
-"loadJSON"
-);
+    color:white;
 
-loadJSON.addEventListener(
-"click",
-()=>{
+    font-weight:600;
+}
 
-const input =
-document.createElement(
-"input"
-);
+.menu-buttons button:hover{
 
-input.type = "file";
+    background:#1d4ed8;
+}
 
-input.accept =
-".json";
+/* ===== メイン ===== */
 
-input.onchange =
-event=>{
+.main-layout{
 
-const file =
-event.target.files[0];
+    display:flex;
 
-if(!file) return;
+    margin-top:70px;
 
-const reader =
-new FileReader();
+    height:
+    calc(100vh - 130px);
+}
 
-reader.onload = ()=>{
+/* ===== 編集エリア ===== */
 
-const data =
-JSON.parse(
-reader.result
-);
+.editor{
 
-cardName.value =
-data.name || "";
+    width:380px;
 
-cardNumber.value =
-data.number || "";
+    min-width:380px;
 
-creator.value =
-data.creator || "";
+    background:#1e293b;
 
-effectText.value =
-data.effect || "";
+    border-right:
+    1px solid #334155;
 
-rarity.value =
-data.rarity || "なし";
+    overflow-y:auto;
 
-cardName.dispatchEvent(
-new Event("input")
-);
+    padding:20px;
+}
 
-cardNumber.dispatchEvent(
-new Event("input")
-);
+/* ===== パネル ===== */
 
-creator.dispatchEvent(
-new Event("input")
-);
+.panel{
 
-effectText.dispatchEvent(
-new Event("input")
-);
+    display:none;
+}
 
-updateRarity();
+.panel.active{
 
-};
+    display:block;
+}
 
-reader.readAsText(
-file
-);
+.panel h2{
 
-};
+    margin-bottom:15px;
 
-input.click();
+    color:#93c5fd;
+}
 
-});
+.panel label{
 
-/* =========================
-   初期表示
-========================= */
+    display:block;
 
-cardNameDisplay.textContent =
-"カード名";
+    margin-top:15px;
 
-numberDisplay.textContent =
-"";
+    margin-bottom:5px;
+}
 
-creatorDisplay.textContent =
-"";
+.panel input,
+.panel textarea,
+.panel select{
 
-effectDisplay.textContent =
-"";
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#334155;
+
+    color:white;
+}
+
+.panel textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+}
+
+/* ===== プレビュー ===== */
+
+.preview{
+
+    flex:1;
+
+    overflow:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:30px;
+}
+
+/* ===== カード固定 ===== */
+
+.card{
+
+    width:600px;
+
+    height:840px;
+
+    border-radius:25px;
+
+    position:sticky;
+
+    top:20px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    180deg,
+    #0d4ea6,
+    #6cc5ff
+    );
+
+    box-shadow:
+    0 0 35px rgba(0,0,0,.7);
+}
+
+/* ===== 名前 ===== */
+
+.card-name{
+
+    position:absolute;
+
+    top:20px;
+
+    left:25px;
+
+    right:25px;
+
+    font-size:52px;
+
+    font-weight:bold;
+
+    color:white;
+
+    z-index:20;
+
+    text-shadow:
+     4px 4px 0 #000,
+    -4px 4px 0 #000,
+     4px -4px 0 #000,
+    -4px -4px 0 #000;
+}
+
+/* ===== 星 ===== */
+
+.stars{
+
+    position:absolute;
+
+    top:95px;
+
+    left:25px;
+
+    font-size:42px;
+
+    z-index:20;
+}
+
+.rainbow-star{
+
+    background:
+    linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+/* ===== 画像 ===== */
+
+.art-area{
+
+    position:absolute;
+
+    top:145px;
+
+    left:60px;
+
+    width:480px;
+
+    height:340px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    border:
+    8px solid rgba(255,255,255,.75);
+
+    background:#222;
+}
+
+.art-area img{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    user-select:none;
+
+    cursor:grab;
+}
+
+/* ===== 効果欄 ===== */
+
+.effect-box{
+
+    position:absolute;
+
+    left:45px;
+
+    top:520px;
+
+    width:510px;
+
+    height:150px;
+
+    background:
+    rgba(255,255,255,.9);
+
+    color:black;
+
+    border-radius:15px;
+
+    padding:12px;
+
+    overflow:auto;
+
+    font-size:22px;
+}
+
+/* ===== レアリティ ===== */
+
+.rarity{
+
+    position:absolute;
+
+    bottom:25px;
+
+    right:25px;
+
+    font-size:38px;
+
+    font-weight:bold;
+}
+
+/* ===== 番号 ===== */
+
+.number{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:25px;
+
+    font-size:20px;
+}
+
+/* ===== 作者 ===== */
+
+.creator{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    font-size:16px;
+
+    opacity:.8;
+}
+
+/* ===== 下タブ ===== */
+
+.bottom-tabs{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:60px;
+
+    background:#0f172a;
+
+    border-top:
+    1px solid #334155;
+
+    display:flex;
+
+    overflow-x:auto;
+
+    z-index:1000;
+}
+
+.bottom-tabs button{
+
+    min-width:120px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.bottom-tabs button:hover{
+
+    background:#1e293b;
+}
+
+/* ===== スマホ ===== */
+
+@media(max-width:1100px){
+
+    .main-layout{
+
+        flex-direction:column;
+    }
+
+    .editor{
+
+        width:100%;
+
+        min-width:auto;
+
+        height:250px;
+    }
+
+    .preview{
+
+        padding:10px;
+    }
+
+    .card{
+
+        transform:scale(.6);
+
+        transform-origin:top center;
+    }
+}
