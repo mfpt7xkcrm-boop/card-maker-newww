@@ -14,10 +14,11 @@ body{
     font-family:
     "Segoe UI",
     sans-serif;
+    overflow-x:hidden;
 }
 
 /* =========================
-   上バー
+   ヘッダー
 ========================= */
 
 .topbar{
@@ -28,19 +29,19 @@ body{
     left:0;
     right:0;
 
-    height:70px;
+    height:72px;
 
     background:#0f172a;
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    padding:0 20px;
+    justify-content:space-between;
 
-    z-index:1000;
+    padding:0 18px;
+
+    z-index:9999;
 
     border-bottom:
     1px solid #334155;
@@ -55,44 +56,44 @@ body{
     color:#60a5fa;
 }
 
-.menu-buttons{
+.header-buttons{
 
     display:flex;
 
     gap:10px;
 }
 
-.menu-buttons button{
-
-    padding:10px 15px;
-
-    border:none;
-
-    border-radius:10px;
+.header-buttons button{
 
     background:#2563eb;
 
     color:white;
 
+    border:none;
+
+    border-radius:10px;
+
+    padding:10px 15px;
+
     cursor:pointer;
 }
 
 /* =========================
-   レイアウト
+   全体
 ========================= */
 
-.main-layout{
+.app{
 
-    margin-top:70px;
+    margin-top:72px;
 
     display:flex;
 
     min-height:
-    calc(100vh - 130px);
+    calc(100vh - 132px);
 }
 
 /* =========================
-   編集エリア
+   編集
 ========================= */
 
 .editor{
@@ -103,12 +104,12 @@ body{
 
     background:#1e293b;
 
-    padding:20px;
+    border-right:
+    1px solid #334155;
 
     overflow-y:auto;
 
-    border-right:
-    1px solid #334155;
+    padding:20px;
 }
 
 .panel{
@@ -132,22 +133,22 @@ body{
 
     display:block;
 
-    margin-top:15px;
+    margin-top:12px;
 
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
 .panel input,
-.panel textarea,
-.panel select{
+.panel select,
+.panel textarea{
 
     width:100%;
-
-    padding:10px;
 
     border:none;
 
     border-radius:10px;
+
+    padding:10px;
 
     background:#334155;
 
@@ -175,103 +176,37 @@ body{
 
     align-items:flex-start;
 
-    padding:30px;
-
     overflow:auto;
+
+    padding:20px;
 }
 
 /* =========================
-   カード
+   カード本体
 ========================= */
 
 .card{
 
-    width:600px;
-
-    height:840px;
-
     position:sticky;
 
     top:20px;
+
+    width:min(95vw,600px);
+
+    aspect-ratio:600 / 840;
 
     border-radius:25px;
 
     overflow:hidden;
 
     box-shadow:
-    0 0 40px rgba(0,0,0,.6);
-}
+    0 0 40px rgba(0,0,0,.5);
 
-/* =========================
-   フレーム
-========================= */
-
-.frame-water{
     background:
     linear-gradient(
     180deg,
-    #0d4ea6,
-    #6cc5ff
-    );
-}
-
-.frame-fire{
-    background:
-    linear-gradient(
-    180deg,
-    #8b0000,
-    #ff6a00
-    );
-}
-
-.frame-nature{
-    background:
-    linear-gradient(
-    180deg,
-    #0b6b2d,
-    #6cff7a
-    );
-}
-
-.frame-dark{
-    background:
-    linear-gradient(
-    180deg,
-    #111,
-    #666
-    );
-}
-
-.frame-light{
-    background:
-    linear-gradient(
-    180deg,
-    #fff7b0,
-    #ffffff
-    );
-}
-
-.frame-rainbow{
-    background:
-    linear-gradient(
-    135deg,
-    red,
-    orange,
-    yellow,
-    green,
-    cyan,
-    blue,
-    violet
-    );
-}
-
-.frame-space{
-    background:
-    linear-gradient(
-    180deg,
-    #00133d,
-    #005eff,
-    #9ce7ff
+    #1e40af,
+    #60a5fa
     );
 }
 
@@ -283,25 +218,25 @@ body{
 
     position:absolute;
 
-    top:20px;
+    top:2.5%;
 
-    left:25px;
+    left:4%;
 
-    right:25px;
+    right:4%;
 
     font-size:52px;
 
-    font-weight:bold;
+    font-weight:900;
+
+    z-index:10;
 
     color:white;
 
-    z-index:20;
-
     text-shadow:
-     3px 3px 0 #000,
-    -3px 3px 0 #000,
-     3px -3px 0 #000,
-    -3px -3px 0 #000;
+      3px 3px 0 #000,
+     -3px 3px 0 #000,
+      3px -3px 0 #000,
+     -3px -3px 0 #000;
 }
 
 /* =========================
@@ -312,13 +247,17 @@ body{
 
     position:absolute;
 
-    top:90px;
+    top:10%;
 
-    left:25px;
+    left:4%;
 
-    z-index:20;
+    z-index:10;
 
     font-size:42px;
+
+    display:flex;
+
+    gap:4px;
 }
 
 .rainbow-star{
@@ -341,29 +280,29 @@ body{
 }
 
 /* =========================
-   画像
+   画像枠
 ========================= */
 
 .art-area{
 
     position:absolute;
 
-    top:145px;
+    top:17%;
 
-    left:60px;
+    left:10%;
 
-    width:480px;
+    width:80%;
 
-    height:340px;
+    height:40%;
 
     overflow:hidden;
 
-    border-radius:20px;
-
-    background:#222;
+    border-radius:18px;
 
     border:
     8px solid rgba(255,255,255,.8);
+
+    background:#111;
 }
 
 .art-area img{
@@ -374,37 +313,73 @@ body{
 
     object-fit:cover;
 
-    display:block;
+    object-position:center;
+
+    user-select:none;
+
+    pointer-events:none;
 }
 
 /* =========================
-   説明文
+   効果
 ========================= */
 
 .effect-box{
 
     position:absolute;
 
-    left:45px;
+    left:7.5%;
 
-    top:520px;
+    top:61%;
 
-    width:510px;
+    width:85%;
 
-    height:150px;
+    height:14%;
 
     background:
-    rgba(255,255,255,.92);
+    rgba(255,255,255,.95);
+
+    border-radius:14px;
 
     color:black;
-
-    border-radius:15px;
 
     padding:12px;
 
     overflow:auto;
 
     font-size:22px;
+}
+
+/* =========================
+   フレーバー
+========================= */
+
+.flavor-box{
+
+    position:absolute;
+
+    left:7.5%;
+
+    top:77%;
+
+    width:85%;
+
+    height:8%;
+
+    background:
+    rgba(255,255,255,.85);
+
+    border-radius:12px;
+
+    color:#333;
+
+    padding:8px;
+
+    font-size:14px;
+
+    overflow:hidden;
+
+    font-style:italic;
 }
 
 /* =========================
@@ -415,15 +390,15 @@ body{
 
     position:absolute;
 
-    right:25px;
+    right:4%;
 
-    bottom:25px;
+    bottom:3%;
 
-    font-size:36px;
+    font-size:34px;
 
     font-weight:bold;
 
-    z-index:20;
+    z-index:10;
 }
 
 /* =========================
@@ -434,11 +409,13 @@ body{
 
     position:absolute;
 
-    left:25px;
+    left:4%;
 
-    bottom:25px;
+    bottom:3%;
 
-    z-index:20;
+    font-size:15px;
+
+    z-index:10;
 }
 
 /* =========================
@@ -451,12 +428,14 @@ body{
 
     left:50%;
 
-    bottom:25px;
+    bottom:3%;
 
     transform:
     translateX(-50%);
 
     font-size:14px;
+
+    z-index:10;
 }
 
 /* =========================
@@ -469,26 +448,47 @@ body{
 
     inset:0;
 
-    pointer-events:none;
-
     opacity:0;
+
+    pointer-events:none;
 
     background:
     linear-gradient(
     135deg,
-    rgba(255,255,255,.1),
-    rgba(255,255,255,.4),
-    rgba(255,255,255,.1)
+    rgba(255,255,255,.05),
+    rgba(255,255,255,.35),
+    rgba(255,255,255,.05)
     );
 
     mix-blend-mode:screen;
+}
+
+.holo-layer.active{
+
+    opacity:1;
+
+    animation:
+    holoMove 4s linear infinite;
+}
+
+@keyframes holoMove{
+
+    0%{
+        transform:
+        translateX(-100%);
+    }
+
+    100%{
+        transform:
+        translateX(100%);
+    }
 }
 
 /* =========================
    下タブ
 ========================= */
 
-.bottom-tabs{
+.bottom-nav{
 
     position:fixed;
 
@@ -509,10 +509,10 @@ body{
     border-top:
     1px solid #334155;
 
-    z-index:1000;
+    z-index:999;
 }
 
-.bottom-tabs button{
+.bottom-nav button{
 
     min-width:120px;
 
@@ -531,7 +531,7 @@ body{
 
 @media(max-width:1100px){
 
-    .main-layout{
+    .app{
 
         flex-direction:column;
     }
@@ -542,7 +542,7 @@ body{
 
         min-width:0;
 
-        max-height:300px;
+        max-height:320px;
     }
 
     .preview{
@@ -556,8 +556,361 @@ body{
 
         width:min(95vw,600px);
 
-        height:calc(min(95vw,600px) * 1.4);
-
-        top:0;
+        margin:auto;
     }
+
+}
+/* =========================
+   ベーシックフレーム
+========================= */
+
+.frame-water{
+    background:
+    linear-gradient(
+    180deg,
+    #1e40af,
+    #60a5fa
+    );
+}
+
+.frame-fire{
+    background:
+    linear-gradient(
+    180deg,
+    #991b1b,
+    #fb923c
+    );
+}
+
+.frame-nature{
+    background:
+    linear-gradient(
+    180deg,
+    #166534,
+    #4ade80
+    );
+}
+
+.frame-light{
+    background:
+    linear-gradient(
+    180deg,
+    #fef3c7,
+    #ffffff
+    );
+}
+
+.frame-dark{
+    background:
+    linear-gradient(
+    180deg,
+    #111827,
+    #6b7280
+    );
+}
+
+.frame-rainbow{
+    background:
+    linear-gradient(
+    135deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+    );
+}
+
+.frame-space{
+    background:
+    radial-gradient(
+    circle at center,
+    #2563eb,
+    #020617
+    );
+}
+
+.frame-blue{
+    background:
+    linear-gradient(
+    180deg,
+    #2563eb,
+    #38bdf8
+    );
+}
+
+.frame-red{
+    background:
+    linear-gradient(
+    180deg,
+    #b91c1c,
+    #f87171
+    );
+}
+
+.frame-green{
+    background:
+    linear-gradient(
+    180deg,
+    #15803d,
+    #4ade80
+    );
+}
+
+.frame-purple{
+    background:
+    linear-gradient(
+    180deg,
+    #7e22ce,
+    #d8b4fe
+    );
+}
+
+/* =========================
+   プレミアムフレーム
+========================= */
+
+.frame-dragon-blue{
+
+    background:
+    linear-gradient(
+    180deg,
+    #0f172a,
+    #2563eb
+    );
+
+    box-shadow:
+    0 0 25px #38bdf8,
+    inset 0 0 30px rgba(255,255,255,.2);
+}
+
+.frame-dragon-red{
+
+    background:
+    linear-gradient(
+    180deg,
+    #450a0a,
+    #dc2626
+    );
+
+    box-shadow:
+    0 0 25px #ef4444,
+    inset 0 0 30px rgba(255,255,255,.2);
+}
+
+.frame-dragon-green{
+
+    background:
+    linear-gradient(
+    180deg,
+    #052e16,
+    #22c55e
+    );
+
+    box-shadow:
+    0 0 25px #4ade80,
+    inset 0 0 30px rgba(255,255,255,.2);
+}
+
+.frame-dragon-purple{
+
+    background:
+    linear-gradient(
+    180deg,
+    #3b0764,
+    #a855f7
+    );
+
+    box-shadow:
+    0 0 25px #c084fc,
+    inset 0 0 30px rgba(255,255,255,.2);
+}
+
+/* =========================
+   聖騎士
+========================= */
+
+.frame-holy{
+
+    background:
+    linear-gradient(
+    180deg,
+    #fff7ed,
+    #fde68a
+    );
+
+    box-shadow:
+    0 0 30px #fde68a,
+    inset 0 0 30px rgba(255,255,255,.5);
+}
+
+/* =========================
+   悪魔
+========================= */
+
+.frame-devil{
+
+    background:
+    linear-gradient(
+    180deg,
+    #1f2937,
+    #991b1b
+    );
+
+    box-shadow:
+    0 0 30px #ef4444;
+}
+
+/* =========================
+   機械
+========================= */
+
+.frame-machine{
+
+    background:
+    linear-gradient(
+    180deg,
+    #d1d5db,
+    #6b7280
+    );
+
+    box-shadow:
+    inset 0 0 15px white;
+}
+
+/* =========================
+   宇宙
+========================= */
+
+.frame-cosmos{
+
+    background:
+    radial-gradient(
+    circle,
+    #60a5fa,
+    #1e1b4b,
+    #020617
+    );
+
+    box-shadow:
+    0 0 30px #60a5fa;
+}
+
+/* =========================
+   PNGフレーム
+========================= */
+
+.card.has-png-frame::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-size:100% 100%;
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    pointer-events:none;
+
+    z-index:50;
+}
+
+.card.frame-blue-dragon-png::after{
+    background-image:
+    url("frames/blue-dragon.png");
+}
+
+.card.frame-red-dragon-png::after{
+    background-image:
+    url("frames/red-dragon.png");
+}
+
+.card.frame-green-dragon-png::after{
+    background-image:
+    url("frames/green-dragon.png");
+}
+
+.card.frame-purple-dragon-png::after{
+    background-image:
+    url("frames/purple-dragon.png");
+}
+
+.card.frame-holy-png::after{
+    background-image:
+    url("frames/holy.png");
+}
+
+.card.frame-devil-png::after{
+    background-image:
+    url("frames/devil.png");
+}
+
+.card.frame-machine-png::after{
+    background-image:
+    url("frames/machine.png");
+}
+
+.card.frame-cosmos-png::after{
+    background-image:
+    url("frames/cosmos.png");
+}
+
+/* =========================
+   レアリティ
+========================= */
+
+.rarity.n{
+    color:white;
+}
+
+.rarity.r{
+    color:#60a5fa;
+}
+
+.rarity.sr{
+    color:#facc15;
+}
+
+.rarity.ssr{
+    color:#fb923c;
+}
+
+.rarity.ur{
+
+    background:
+    linear-gradient(
+    90deg,
+    gold,
+    white,
+    gold
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+.rarity.lr{
+
+    background:
+    linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
 }
