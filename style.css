@@ -233,30 +233,29 @@ body{
     color:#ffe7a0;
     text-shadow:
         0 0 4px rgba(255,255,255,.9),
-        0 0 10px rgba(202,170,255,.45);
-    filter:drop-shadow(0 0 2px rgba(255,255,255,.95));
+        0 0 10px rgba(202,170,255,.28);
+    filter:drop-shadow(0 0 2px rgba(255,255,255,.9));
     transform:translateY(-1px);
 }
 
-.star.rainbow{
+.star.five{
     background:linear-gradient(
-        90deg,
-        #fff8b4 0%,
-        #ffd6f1 16%,
-        #c8fbff 34%,
-        #ead7ff 52%,
-        #fff5c7 70%,
-        #d8fff1 86%,
-        #fff8b4 100%
+        180deg,
+        #fffaf2 0%,
+        #e9fff9 20%,
+        #ffe5f1 42%,
+        #eef0ff 64%,
+        #fff4cc 82%,
+        #fffdf0 100%
     );
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
+    -webkit-text-stroke:1.1px rgba(255,255,255,.96);
     text-shadow:
-        0 0 3px rgba(255,255,255,.95),
-        0 0 8px rgba(255,255,255,.55),
-        0 0 14px rgba(194,165,255,.35);
-    filter:drop-shadow(0 0 2px rgba(255,255,255,.95));
+        0 0 2px rgba(255,255,255,.92),
+        0 0 5px rgba(255,255,255,.35);
+    filter:drop-shadow(0 0 1px rgba(255,255,255,.85));
 }
 
 .content-panel{
@@ -473,7 +472,7 @@ body{
 
 .frame-light{
     background:
-        radial-gradient(circle at 50% 12%, rgba(255,255,255,.45) 0 2%, transparent 10%),
+        radial-gradient(circle at 50% 12%, rgba(255,255,255,.45) 0 2%, transparent 11%),
         linear-gradient(180deg,#fff7b0,#ffffff);
 }
 
@@ -709,11 +708,11 @@ body{
     }
 
     .card-name{
-        font-size: clamp(26px, 8vw, 52px);
+        font-size:clamp(26px,8vw,52px);
     }
 
     .stars{
-        font-size: clamp(26px, 6vw, 40px);
+        font-size:clamp(26px,6vw,40px);
     }
 
     .effect-main{
