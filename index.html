@@ -1,338 +1,171 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Hirokaka Orica Maker V4</title>
-
+<title>Hirokaka Orica Maker V5</title>
 <link rel="stylesheet" href="style.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 </head>
-
 <body>
 
 <header class="topbar">
+  <div class="logo">Hirokakapresents</div>
 
-    <div class="logo">
-        Hirokakapresents
-    </div>
-
-    <div class="header-buttons">
-
-        <button id="savePNG">
-            PNG保存
-        </button>
-
-        <button id="saveJPG">
-            JPG保存
-        </button>
-
-        <button id="saveJSON">
-            JSON保存
-        </button>
-
-        <button id="loadJSONBtn">
-            JSON読込
-        </button>
-
-        <input
-        type="file"
-        id="loadJSON"
-        accept=".json"
-        hidden>
-
-    </div>
-
+  <div class="header-buttons">
+    <button id="savePNG">PNG保存</button>
+    <button id="saveJPG">JPG保存</button>
+    <button id="saveJSON">JSON保存</button>
+    <button id="loadJSONBtn">JSON読込</button>
+    <input type="file" id="loadJSON" accept=".json" hidden>
+  </div>
 </header>
 
 <div class="app">
 
-    <!-- 編集エリア -->
+  <aside class="editor">
 
-    <aside class="editor">
+    <section class="panel active" id="panel-basic">
+      <h2>基本情報</h2>
 
-        <!-- 基本 -->
+      <label>カード名</label>
+      <input type="text" id="cardName" placeholder="カード名">
 
-        <section class="panel active"
-                 id="panel-basic">
+      <label>名前サイズ</label>
+      <input type="range" id="nameSize" min="24" max="80" value="52">
 
-            <h2>基本情報</h2>
+      <label>文字色</label>
+      <input type="color" id="nameColor" value="#ffffff">
 
-            <label>カード名</label>
+      <label>縁色</label>
+      <input type="color" id="outlineColor" value="#000000">
 
-            <input
-            type="text"
-            id="cardName">
-
-            <label>名前サイズ</label>
-
-            <input
-            type="range"
-            id="nameSize"
-            min="20"
-            max="80"
-            value="52">
-
-            <label>文字色</label>
-
-            <input
-            type="color"
-            id="nameColor"
-            value="#ffffff">
-
-            <label>縁色</label>
-
-            <input
-            type="color"
-            id="outlineColor"
-            value="#000000">
-
-            <label>カード番号</label>
-
-            <input
-            type="text"
-            id="cardNumber">
-
-            <label>作者名</label>
-
-            <input
-            type="text"
-            id="creator">
-
-        </section>
-
-        <!-- 画像 -->
-
-        <section class="panel"
-                 id="panel-image">
-
-            <h2>画像</h2>
-
-            <input
-            type="file"
-            id="imageUpload"
-            accept="image/*">
-
-            <label>ズーム</label>
-
-            <input
-            type="range"
-            id="imageZoom"
-            min="50"
-            max="300"
-            value="100">
-
-        </section>
-
-        <!-- フレーム -->
-
-        <section class="panel"
-                 id="panel-frame">
-
-            <h2>フレーム</h2>
-
-            <label>カテゴリ</label>
-
-            <select id="frameCategory">
-
-                <option value="basic">
-                    ベーシック
-                </option>
-
-                <option value="premium">
-                    プレミアム
-                </option>
-
-            </select>
-
-            <label>フレーム</label>
-
-            <select id="frameSelect"></select>
-
-        </section>
-
-        <!-- 星 -->
-
-        <section class="panel"
-                 id="panel-star">
-
-            <h2>星</h2>
-
-            <label>星の数</label>
-
-            <input
-            type="range"
-            id="starCount"
-            min="0"
-            max="5"
-            value="0">
-
-        </section>
-
-        <!-- 説明 -->
-
-        <section class="panel"
-                 id="panel-effect">
-
-            <h2>説明文</h2>
-
-            <textarea
-            id="effectText"></textarea>
-
-            <label>説明サイズ</label>
-
-            <input
-            type="range"
-            id="effectSize"
-            min="12"
-            max="36"
-            value="22">
-
-            <label>フレーバー</label>
-
-            <textarea
-            id="flavorText"></textarea>
-
-        </section>
-
-        <!-- レア -->
-
-        <section class="panel"
-                 id="panel-rarity">
-
-            <h2>レアリティ</h2>
-
-            <select id="rarity">
-
-                <option value="">
-                    なし
-                </option>
-
-                <option>N</option>
-                <option>R</option>
-                <option>SR</option>
-                <option>SSR</option>
-                <option>UR</option>
-                <option>LR</option>
-
-            </select>
-
-            <label>
-
-                <input
-                type="checkbox"
-                id="holo">
-
-                ホログラム
-
-            </label>
-
-        </section>
-
-    </aside>
-
-    <!-- カード -->
-
-    <main class="preview">
-
-        <div id="card"
-             class="card frame-water">
-
-            <!-- ホロ -->
-
-            <div id="holoLayer"
-                 class="holo-layer"></div>
-
-            <!-- 名前 -->
-
-            <div id="cardNameDisplay"
-                 class="card-name">
-
-                カード名
-
-            </div>
-
-            <!-- 星 -->
-
-            <div id="stars"
-                 class="stars"></div>
-
-            <!-- 画像 -->
-
-            <div class="art-area">
-
-                <img
-                id="cardImage"
-                draggable="false">
-
-            </div>
-
-            <!-- 説明 -->
-
-            <div id="effectDisplay"
-                 class="effect-box"></div>
-
-            <!-- フレーバー -->
-
-            <div id="flavorDisplay"
-                 class="flavor-box"></div>
-
-            <!-- レア -->
-
-            <div id="rarityDisplay"
-                 class="rarity"></div>
-
-            <!-- 番号 -->
-
-            <div id="numberDisplay"
-                 class="number"></div>
-
-            <!-- 作者 -->
-
-            <div id="creatorDisplay"
-                 class="creator"></div>
-
+      <label>カード番号</label>
+      <input type="text" id="cardNumber" placeholder="No.001">
+
+      <label>作者名</label>
+      <input type="text" id="creator" placeholder="Hirokaka">
+    </section>
+
+    <section class="panel" id="panel-image">
+      <h2>画像</h2>
+
+      <input type="file" id="imageUpload" accept="image/*">
+      <p class="panel-note">追加した画像は中央で自動トリミングされます。</p>
+    </section>
+
+    <section class="panel" id="panel-frame">
+      <h2>フレーム</h2>
+
+      <label>カテゴリ</label>
+      <select id="frameCategory">
+        <option value="basic">ベーシック</option>
+        <option value="premium">プレミアム</option>
+      </select>
+
+      <label>フレーム</label>
+      <select id="frameSelect"></select>
+    </section>
+
+    <section class="panel" id="panel-star">
+      <h2>星</h2>
+
+      <label>星の数</label>
+      <input type="range" id="starCount" min="0" max="5" value="0">
+      <p class="panel-note">5個のときは明るめの虹色になります。</p>
+    </section>
+
+    <section class="panel" id="panel-effect">
+      <h2>説明文</h2>
+
+      <label>効果テキスト</label>
+      <textarea id="effectText" placeholder="■効果を入力"></textarea>
+
+      <label>説明文字サイズ</label>
+      <input type="range" id="effectSize" min="12" max="36" value="20">
+
+      <label>フレーバーテキスト</label>
+      <textarea id="flavorText" placeholder="真なる光は、闇を断ち、未来を導く。"></textarea>
+
+      <label>
+        <input type="checkbox" id="showFlavor" checked>
+        フレーバーテキストを表示
+      </label>
+
+      <label>フレーバーフォント</label>
+      <select id="flavorFont">
+        <option value="mincho">游明朝（おすすめ）</option>
+        <option value="gothic">游ゴシック</option>
+        <option value="serif">セリフ</option>
+      </select>
+
+      <label>フレーバー文字サイズ</label>
+      <input type="range" id="flavorSize" min="10" max="24" value="14">
+
+      <p class="panel-note">フレーバーは説明枠の下に入ります。</p>
+    </section>
+
+    <section class="panel" id="panel-rarity">
+      <h2>レアリティ</h2>
+
+      <select id="rarity">
+        <option value="">なし</option>
+        <option>N</option>
+        <option>R</option>
+        <option>SR</option>
+        <option>SSR</option>
+        <option>UR</option>
+        <option>LR</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="holo">
+        ホログラム
+      </label>
+    </section>
+
+  </aside>
+
+  <main class="preview">
+    <div id="card" class="card frame-water">
+      <div id="holoLayer" class="holo-layer"></div>
+
+      <div id="cardNameDisplay" class="card-name">カード名</div>
+      <div id="stars" class="stars"></div>
+
+      <div class="content-panel">
+        <div class="art-area">
+          <img
+            id="cardImage"
+            draggable="false"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            alt="">
         </div>
 
-    </main>
+        <div class="text-area">
+          <div id="effectDisplay" class="effect-main"></div>
+          <div id="flavorDivider" class="flavor-divider"></div>
+          <div id="flavorDisplay" class="effect-flavor"></div>
+        </div>
+      </div>
+
+      <div id="rarityDisplay" class="rarity"></div>
+      <div id="numberDisplay" class="number"></div>
+      <div id="creatorDisplay" class="creator"></div>
+    </div>
+  </main>
 
 </div>
 
-<!-- 下タブ -->
-
 <nav class="bottom-nav">
-
-    <button data-panel="basic">
-        基本
-    </button>
-
-    <button data-panel="image">
-        画像
-    </button>
-
-    <button data-panel="frame">
-        フレーム
-    </button>
-
-    <button data-panel="star">
-        星
-    </button>
-
-    <button data-panel="effect">
-        説明
-    </button>
-
-    <button data-panel="rarity">
-        レア
-    </button>
-
+  <button data-panel="basic" class="active">基本</button>
+  <button data-panel="image">画像</button>
+  <button data-panel="frame">フレーム</button>
+  <button data-panel="star">星</button>
+  <button data-panel="effect">説明</button>
+  <button data-panel="rarity">レア</button>
 </nav>
 
 <script src="script.js"></script>
-
 </body>
 </html>
