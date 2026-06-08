@@ -1,99 +1,135 @@
-// =====================
+// =========================
 // 要素取得
-// =====================
+// =========================
 
 const card = document.getElementById("card");
 
-const cardName = document.getElementById("cardName");
-const cardNameDisplay = document.getElementById("cardNameDisplay");
+const cardName =
+document.getElementById("cardName");
 
-const nameSize = document.getElementById("nameSize");
-const nameColor = document.getElementById("nameColor");
+const cardNameDisplay =
+document.getElementById("cardNameDisplay");
 
-const cardNumber = document.getElementById("cardNumber");
-const numberDisplay = document.getElementById("numberDisplay");
+const nameSize =
+document.getElementById("nameSize");
 
-const creator = document.getElementById("creator");
-const creatorDisplay = document.getElementById("creatorDisplay");
+const nameColor =
+document.getElementById("nameColor");
 
-const effectText = document.getElementById("effectText");
-const effectDisplay = document.getElementById("effectDisplay");
+const effectText =
+document.getElementById("effectText");
 
-const flavorText = document.getElementById("flavorText");
-const flavorDisplay = document.getElementById("flavorDisplay");
+const effectDisplay =
+document.getElementById("effectDisplay");
 
-const effectSize = document.getElementById("effectSize");
+const flavorText =
+document.getElementById("flavorText");
 
-const stars = document.getElementById("stars");
-const starCount = document.getElementById("starCount");
+const flavorDisplay =
+document.getElementById("flavorDisplay");
 
-const rarity = document.getElementById("rarity");
-const rarityDisplay = document.getElementById("rarityDisplay");
+const effectSize =
+document.getElementById("effectSize");
 
-const holo = document.getElementById("holo");
-const holoLayer = document.getElementById("holoLayer");
+const cardNumber =
+document.getElementById("cardNumber");
 
-const frameSelect = document.getElementById("frameSelect");
-const frameCategory = document.getElementById("frameCategory");
+const numberDisplay =
+document.getElementById("numberDisplay");
 
-// =====================
+const creator =
+document.getElementById("creator");
+
+const creatorDisplay =
+document.getElementById("creatorDisplay");
+
+const rarity =
+document.getElementById("rarity");
+
+const rarityDisplay =
+document.getElementById("rarityDisplay");
+
+const starCount =
+document.getElementById("starCount");
+
+const stars =
+document.getElementById("stars");
+
+const holo =
+document.getElementById("holo");
+
+const holoLayer =
+document.getElementById("holoLayer");
+
+const frameSelect =
+document.getElementById("frameSelect");
+
+const frameCategory =
+document.getElementById("frameCategory");
+
+const imageUpload =
+document.getElementById("imageUpload");
+
+const cardImage =
+document.getElementById("cardImage");
+
+const imageZoom =
+document.getElementById("imageZoom");
+
+// =========================
 // フレーム一覧
-// =====================
+// =========================
 
 const frameData = {
 
-    basic: [
+basic:[
+["water","水"],
+["fire","火"],
+["nature","自然"],
+["light","光"],
+["dark","闇"],
+["rainbow","虹"],
+["space","宇宙"],
+["blue","青"],
+["red","赤"],
+["green","緑"],
+["purple","紫"]
+],
 
-        ["water","水"],
-        ["fire","火"],
-        ["nature","自然"],
-        ["light","光"],
-        ["dark","闇"],
-        ["rainbow","虹"],
-        ["space","宇宙"],
-        ["blue","青"],
-        ["red","赤"],
-        ["green","緑"],
-        ["purple","紫"]
-
-    ],
-
-    premium:[
-
-        ["dragon-blue","青ドラゴン"],
-        ["dragon-red","赤ドラゴン"],
-        ["dragon-green","緑ドラゴン"],
-        ["dragon-purple","紫ドラゴン"],
-        ["holy","聖騎士"],
-        ["devil","悪魔"],
-        ["machine","機械"],
-        ["cosmos","宇宙"]
-
-    ]
+premium:[
+["dragon-blue","青ドラゴン"],
+["dragon-red","赤ドラゴン"],
+["dragon-green","緑ドラゴン"],
+["dragon-purple","紫ドラゴン"],
+["holy","聖騎士"],
+["devil","悪魔"],
+["machine","機械"],
+["cosmos","宇宙"]
+]
 
 };
 
-// =====================
+// =========================
 // フレーム読込
-// =====================
+// =========================
 
 function loadFrames(){
 
-    frameSelect.innerHTML="";
+frameSelect.innerHTML="";
 
-    frameData[
-        frameCategory.value
-    ].forEach(frame=>{
+frameData[
+frameCategory.value
+].forEach(frame=>{
 
-        const option =
-        document.createElement("option");
+const option =
+document.createElement("option");
 
-        option.value = frame[0];
-        option.textContent = frame[1];
+option.value=frame[0];
+option.textContent=frame[1];
 
-        frameSelect.appendChild(option);
+frameSelect.appendChild(option);
 
-    });
+});
 
 }
 
@@ -104,131 +140,115 @@ frameCategory.addEventListener(
 loadFrames
 );
 
-// =====================
+// =========================
 // カード名
-// =====================
+// =========================
 
 cardName.addEventListener(
 "input",
 ()=>{
-    cardNameDisplay.textContent =
-    cardName.value || "カード名";
+cardNameDisplay.textContent =
+cardName.value || "カード名";
 }
 );
-
-// =====================
-// 名前サイズ
-// =====================
 
 nameSize.addEventListener(
 "input",
 ()=>{
-    cardNameDisplay.style.fontSize =
-    nameSize.value + "px";
+cardNameDisplay.style.fontSize =
+nameSize.value + "px";
 }
 );
-
-// =====================
-// 名前色
-// =====================
 
 nameColor.addEventListener(
 "input",
 ()=>{
-    cardNameDisplay.style.color =
-    nameColor.value;
+cardNameDisplay.style.color =
+nameColor.value;
 }
 );
 
-// =====================
-// カード番号
-// =====================
-
-cardNumber.addEventListener(
-"input",
-()=>{
-    numberDisplay.textContent =
-    cardNumber.value;
-}
-);
-
-// =====================
-// 作者
-// =====================
-
-creator.addEventListener(
-"input",
-()=>{
-    creatorDisplay.textContent =
-    creator.value;
-}
-);
-
-// =====================
-// 説明文
-// =====================
+// =========================
+// 説明
+// =========================
 
 effectText.addEventListener(
 "input",
 ()=>{
-    effectDisplay.textContent =
-    effectText.value;
+effectDisplay.textContent =
+effectText.value;
 }
 );
-
-// =====================
-// フレーバー
-// =====================
 
 flavorText.addEventListener(
 "input",
 ()=>{
-    flavorDisplay.textContent =
-    flavorText.value;
+flavorDisplay.textContent =
+flavorText.value;
 }
 );
-
-// =====================
-// 説明サイズ
-// =====================
 
 effectSize.addEventListener(
 "input",
 ()=>{
-    effectDisplay.style.fontSize =
-    effectSize.value + "px";
+effectDisplay.style.fontSize =
+effectSize.value + "px";
 }
 );
 
-// =====================
+// =========================
+// 番号
+// =========================
+
+cardNumber.addEventListener(
+"input",
+()=>{
+numberDisplay.textContent =
+cardNumber.value;
+}
+);
+
+// =========================
+// 作者
+// =========================
+
+creator.addEventListener(
+"input",
+()=>{
+creatorDisplay.textContent =
+creator.value;
+}
+);
+
+// =========================
 // 星
-// =====================
+// =========================
 
 function updateStars(){
 
-    stars.innerHTML="";
+stars.innerHTML="";
 
-    const count =
-    Number(starCount.value);
+const count =
+Number(starCount.value);
 
-    for(let i=0;i<count;i++){
+for(let i=0;i<count;i++){
 
-        const span =
-        document.createElement("span");
+const star =
+document.createElement("span");
 
-        span.textContent = "⭐";
+star.textContent="⭐";
 
-        if(count===5){
+if(count===5){
 
-            span.classList.add(
-            "rainbow-star"
-            );
+star.classList.add(
+"rainbow-star"
+);
 
-        }
+}
 
-        stars.appendChild(span);
+stars.appendChild(star);
 
-    }
+}
 
 }
 
@@ -239,105 +259,281 @@ starCount.addEventListener(
 updateStars
 );
 
-// =====================
-// レアリティ
-// =====================
+// =========================
+// レア
+// =========================
 
 rarity.addEventListener(
 "change",
 ()=>{
 
-    rarityDisplay.textContent =
-    rarity.value;
+rarityDisplay.textContent =
+rarity.value;
 
-    rarityDisplay.className =
-    "rarity";
+rarityDisplay.className =
+"rarity";
 
-    const value =
-    rarity.value.toLowerCase();
+if(rarity.value){
 
-    if(value){
+rarityDisplay.classList.add(
+rarity.value.toLowerCase()
+);
 
-        rarityDisplay.classList.add(
-        value
-        );
-
-    }
+}
 
 }
 );
 
-// =====================
-// ホログラム
-// =====================
+// =========================
+// ホロ
+// =========================
 
 holo.addEventListener(
 "change",
 ()=>{
 
-    if(holo.checked){
+if(holo.checked){
 
-        holoLayer.classList.add(
-        "active"
-        );
+holoLayer.classList.add(
+"active"
+);
 
-    }else{
+}else{
 
-        holoLayer.classList.remove(
-        "active"
-        );
+holoLayer.classList.remove(
+"active"
+);
 
-    }
+}
 
 }
 );
 
-// =====================
-// フレーム変更
-// =====================
+// =========================
+// フレーム
+// =========================
 
 frameSelect.addEventListener(
 "change",
 ()=>{
 
-    card.className =
-    "card frame-" +
-    frameSelect.value;
+card.className="card";
+
+card.classList.add(
+"frame-" +
+frameSelect.value
+);
 
 }
 );
 
-// =====================
-// タブ切替
-// =====================
+// =========================
+// 画像アップロード
+// =========================
+
+imageUpload.addEventListener(
+"change",
+(event)=>{
+
+const file =
+event.target.files[0];
+
+if(!file) return;
+
+const reader =
+new FileReader();
+
+reader.onload=(e)=>{
+
+cardImage.src =
+e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+);
+
+// =========================
+// ズーム
+// =========================
+
+let zoom = 1;
+
+imageZoom.addEventListener(
+"input",
+()=>{
+
+zoom =
+imageZoom.value / 100;
+
+updateTransform();
+
+}
+);
+
+// =========================
+// ドラッグ
+// =========================
+
+let posX = 0;
+let posY = 0;
+
+let dragging = false;
+
+const artArea =
+document.querySelector(
+".art-area"
+);
+
+artArea.addEventListener(
+"pointerdown",
+()=>{
+
+dragging=true;
+
+}
+);
+
+window.addEventListener(
+"pointerup",
+()=>{
+
+dragging=false;
+
+}
+);
+
+window.addEventListener(
+"pointermove",
+(e)=>{
+
+if(!dragging) return;
+
+posX += e.movementX;
+posY += e.movementY;
+
+updateTransform();
+
+}
+);
+
+function updateTransform(){
+
+cardImage.style.transform =
+`translate(calc(-50% + ${posX}px),
+calc(-50% + ${posY}px))
+scale(${zoom})`;
+
+}
+
+// =========================
+// PNG保存
+// =========================
 
 document
-.querySelectorAll(".bottom-nav button")
-.forEach(button=>{
+.getElementById("savePNG")
+.addEventListener(
+"click",
+()=>{
 
-    button.addEventListener(
-    "click",
-    ()=>{
+html2canvas(card,{
 
-        document
-        .querySelectorAll(".panel")
-        .forEach(panel=>{
+scale:4,
+useCORS:true
 
-            panel.classList.remove(
-            "active"
-            );
+}).then(canvas=>{
 
-        });
+const link =
+document.createElement("a");
 
-        document
-        .getElementById(
-        "panel-" +
-        button.dataset.panel
-        )
-        .classList.add(
-        "active"
-        );
+link.download =
+"card.png";
 
-    });
+link.href =
+canvas.toDataURL(
+"image/png"
+);
+
+link.click();
+
+});
+
+}
+);
+
+// =========================
+// JPG保存
+// =========================
+
+document
+.getElementById("saveJPG")
+.addEventListener(
+"click",
+()=>{
+
+html2canvas(card,{
+
+scale:4,
+useCORS:true
+
+}).then(canvas=>{
+
+const link =
+document.createElement("a");
+
+link.download =
+"card.jpg";
+
+link.href =
+canvas.toDataURL(
+"image/jpeg",
+0.95
+);
+
+link.click();
+
+});
+
+}
+);
+
+// =========================
+// タブ切替
+// =========================
+
+document
+.querySelectorAll(
+".bottom-nav button"
+)
+.forEach(btn=>{
+
+btn.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll(
+".panel"
+)
+.forEach(panel=>{
+
+panel.classList.remove(
+"active"
+);
+
+});
+
+document
+.getElementById(
+"panel-" +
+btn.dataset.panel
+)
+.classList.add(
+"active"
+);
+
+});
 
 });
