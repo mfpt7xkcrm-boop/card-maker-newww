@@ -158,7 +158,7 @@ function updateStars() {
     const span = document.createElement("span");
     span.className = "star";
     span.textContent = "★";
-    if (count === 5) span.classList.add("rainbow");
+    if (count === 5) span.classList.add("five");
     stars.appendChild(span);
   }
 }
