@@ -230,32 +230,35 @@ body{
     display:inline-block;
     font-size:40px;
     line-height:1;
-    color:#ffe7a0;
+    color:#ffe07a;
     text-shadow:
-        0 0 4px rgba(255,255,255,.9),
-        0 0 10px rgba(202,170,255,.28);
-    filter:drop-shadow(0 0 2px rgba(255,255,255,.9));
+        0 0 3px rgba(255,255,255,.75),
+        0 0 8px rgba(255,201,92,.45),
+        0 1px 0 rgba(0,0,0,.12);
+    filter:drop-shadow(0 0 2px rgba(255,255,255,.55));
     transform:translateY(-1px);
 }
 
 .star.five{
     background:linear-gradient(
         180deg,
-        #fffaf2 0%,
-        #e9fff9 20%,
-        #ffe5f1 42%,
-        #eef0ff 64%,
-        #fff4cc 82%,
-        #fffdf0 100%
+        #fff8d6 0%,
+        #ffe0ef 18%,
+        #d8f6ff 36%,
+        #f0e3ff 54%,
+        #fff0c8 72%,
+        #dff9ee 88%,
+        #fff8e6 100%
     );
     -webkit-background-clip:text;
     background-clip:text;
+    -webkit-text-fill-color:transparent;
     color:transparent;
-    -webkit-text-stroke:1.1px rgba(255,255,255,.96);
     text-shadow:
-        0 0 2px rgba(255,255,255,.92),
-        0 0 5px rgba(255,255,255,.35);
-    filter:drop-shadow(0 0 1px rgba(255,255,255,.85));
+        0 0 2px rgba(255,255,255,.35),
+        0 0 6px rgba(255,220,245,.18),
+        0 0 10px rgba(210,244,255,.14);
+    filter:drop-shadow(0 0 1px rgba(255,255,255,.25));
 }
 
 .content-panel{
